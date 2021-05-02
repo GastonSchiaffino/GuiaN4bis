@@ -1,13 +1,15 @@
 package com.company.VideoStore;
 
+import java.util.Objects;
+
 public class Movie {
 
     ///Atributos
-    private String gender;
+    private Gender gender;
     private String title;
     private String dateLaunch;
     private int duration;
-    private String audienceClassification;
+    private AudienceClassification audienceClassification;
     private String countryOrigin;
     private String description;
     private int amountCopies;
@@ -15,7 +17,7 @@ public class Movie {
     ///Constructores
     public Movie(){
     }
-    public Movie(String gender,String title, String dateLaunch, int duration, String audienceClassification, String countryOrigin, String description,int amountCopies){
+    public Movie(Gender gender,String title, String dateLaunch, int duration, AudienceClassification audienceClassification, String countryOrigin, String description,int amountCopies){
         this.gender=gender;
         this.title=title;
         this.dateLaunch=dateLaunch;
@@ -52,11 +54,11 @@ public class Movie {
         this.duration = duration;
     }
 
-    public String getAudienceClassification() {
+    public AudienceClassification getAudienceClassification() {
         return audienceClassification;
     }
 
-    public void setAudienceClassification(String audienceClassification) {
+    public void setAudienceClassification(AudienceClassification audienceClassification) {
         this.audienceClassification = audienceClassification;
     }
 
@@ -76,11 +78,11 @@ public class Movie {
         this.description = description;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -94,10 +96,26 @@ public class Movie {
 
     ///Metodos
 
-    public String printMovie(){
-    return ("Genero: " + this.gender + "|| Titulo: " + this.title + "|| Lanzamiento: " + this.dateLaunch +
-            "|| Duracion: " + this.duration + "|| Clasificación: " + this.audienceClassification + "|| Pais de Origen: " + countryOrigin +
-            "|| Descripcion: " + this.description + "|| Copias: " + this.amountCopies);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return title.equals(movie.title);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
+    }
+
+    @Override
+    public String toString(){
+    return "Genero: " + this.gender + "|| Titulo: " + this.title + "|| Lanzamiento: " + this.dateLaunch +
+            "|| Duracion: " + this.duration + "|| Clasificación: " + this.audienceClassification + "|| Pais de Origen: "
+            + countryOrigin + "|| Descripcion: " + this.description + "|| Copias: " + this.amountCopies;
+    }
+
 
 }
